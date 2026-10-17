@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A privacy-first browser toolbox for developers: JSON, API testing, Base64, and UUIDs.">
+  <title>DevToolkit Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">{"}"}</span><div><strong>DevToolkit</strong><small>Developer Dashboard</small></div></div>
+    <span class="status"><span></span> Runs in your browser</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">YOUR EVERYDAY DEV COMPANION</p>
+      <h1>Less busywork.<br><span>More building.</span></h1>
+      <p class="intro">Small, practical utilities for the tasks developers do every day. Free, fast, and no account required.</p>
+    </section>
+
+    <nav class="tabs" aria-label="Developer tools">
+      <button class="tab active" data-panel="json">JSON Studio</button>
+      <button class="tab" data-panel="api">API Tester</button>
+      <button class="tab" data-panel="base64">Base64</button>
+      <button class="tab" data-panel="uuid">UUID Generator</button>
+    </nav>
+
+    <section class="panel active" id="json">
+      <div class="panel-heading"><div><p class="eyebrow">01 / DATA</p><h2>JSON Studio</h2><p>Validate and pretty-print JSON in seconds.</p></div></div>
+      <div class="two-col">
+        <div><label for="jsonInput">Input JSON</label><textarea id="jsonInput" spellcheck="false">{ "project": "DevToolkit", "version": 1, "features": ["JSON", "API", "Base64"] }</textarea></div>
+        <div><label for="jsonOutput">Formatted output</label><textarea id="jsonOutput" spellcheck="false" readonly placeholder="Your formatted JSON appears here..."></textarea></div>
+      </div>
+      <div class="actions"><button class="primary" id="formatJson">Format & validate</button><button class="secondary" id="minifyJson">Minify</button><button class="secondary" id="copyJson">Copy output</button></div>
+      <p class="feedback" id="jsonFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="api">
+      <div class="panel-heading"><div><p class="eyebrow">02 / NETWORK</p><h2>API Tester</h2><p>Send a request and inspect the response. Public APIs may require CORS support.</p></div></div>
+      <div class="api-row">
+        <select id="apiMethod" aria-label="HTTP method"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select>
+        <input id="apiUrl" type="url" value="https://jsonplaceholder.typicode.com/todos/1" aria-label="Request URL">
+        <button class="primary" id="sendRequest">Send request ↗</button>
+      </div>
+      <div id="bodyWrap" class="body-wrap hidden"><label for="apiBody">Request body (JSON)</label><textarea id="apiBody">{ "title": "Hello from DevToolkit", "completed": false }</textarea></div>
+      <div class="response-head"><strong>Response</strong><span id="apiMeta">Waiting for request</span></div>
+      <pre id="apiOutput" class="response">Your response will appear here.</pre>
+      <p class="feedback" id="apiFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="base64">
+      <div class="panel-heading"><div><p class="eyebrow">03 / ENCODING</p><h2>Base64 Utility</h2><p>Encode plain text or decode Base64 strings.</p></div></div>
+      <label for="baseInput">Text or Base64 input</label><textarea id="baseInput" placeholder="Type or paste text here..."></textarea>
+      <div class="actions"><button class="primary" id="encode">Encode to Base64</button><button class="secondary" id="decode">Decode Base64</button><button class="secondary" id="copyBase">Copy result</button></div>
+      <label for="baseOutput">Result</label><textarea id="baseOutput" readonly placeholder="Result appears here..."></textarea>
+      <p class="feedback" id="baseFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="uuid">
+      <div class="panel-heading"><div><p class="eyebrow">04 / IDENTIFIERS</p><h2>UUID Generator</h2><p>Generate unique IDs for prototypes, test data, and development.</p></div></div>
+      <div class="uuid-box"><code id="uuidOutput">Click generate to create a UUID.</code></div>
+      <div class="actions"><button class="primary" id="generateUuid">Generate UUID</button><button class="secondary" id="copyUuid">Copy UUID</button></div>
+      <p class="feedback" id="uuidFeedback" aria-live="polite"></p>
+    </section>
+
+    <section class="tip"><span class="tip-icon">✳</span><div><strong>Developer note</strong><p>Never put API keys or private credentials into client-side code. Anything shipped to the browser can be inspected by users.</p></div></section>
+  </main>
+  <footer><span>DevToolkit Dashboard</span><span>Built for curious developers · MIT License</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
